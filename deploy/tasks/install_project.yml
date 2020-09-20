@@ -1,0 +1,10 @@
+---
+- hosts: minus.lviv.ua
+  tasks:
+    - name: inclue variables
+      include_vars:
+        file: deploy_vars/vars.yml
+    - name: git clone.
+      git:
+       repo: '{{ bitbucket_url }}'
+       dest: /home/{{ linux_user }}/minus.lviv.ua

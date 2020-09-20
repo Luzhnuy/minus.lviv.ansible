@@ -1,0 +1,18 @@
+---
+- hosts: minus.lviv.ua
+  tasks:
+    - name: inclue variables
+      include_vars:
+        file: deploy_vars/vars.yml
+    - name: Add deployment user
+      user:
+        name: linux_user
+        password: '{{ linux_password }}'
+        groups:
+          - docker
+          - sudo
+        state: present
+        shell: /bin/bash
+        system: no
+        createhome: yes
+        home: /home/{{ linux_user }}
